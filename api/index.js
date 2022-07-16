@@ -1,28 +1,15 @@
-//                       _oo0oo_
-//                      o8888888o
-//                      88" . "88
-//                      (| -_- |)
-//                      0\  =  /0
-//                    ___/`---'\___
-//                  .' \\|     |// '.
-//                 / \\|||  :  |||// \
-//                / _||||| -:- |||||- \
-//               |   | \\\  -  /// |   |
-//               | \_|  ''\---/''  |_/ |
-//               \  .-\__  '-'  ___/-. /
-//             ___'. .'  /--.--\  `. .'___
-//          ."" '<  `.___\_<|>_/___.' >' "".
-//         | | :  `- \`.;`\ _ /`;.`/ - ` : | |
-//         \  \ `_.   \_ __\ /__ _/   .-` /  /
-//     =====`-.____`.___ \_____/___.-`___.-'=====
-//                       `=---='
-//     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const server = require("./src/app.js");
+const { database } = require("./src/db.js");
+require("dotenv").config(); //para leer las variables de entorno
+
+const SERVER_PORT = process.env.SERVER_PORT || 3001;
+const DB_PORT = process.env.DB_PORT || 5432;
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+//Con {force:true} ==>es un sincronizado forzado por lo que se reescribe la Bd al recargar la app
+database.sync({ force: false }).then(() => {
+  server.listen(SERVER_PORT, () => {
+    console.log(`Server Listening in http://localhost:${SERVER_PORT}/`);
+    console.log(`Database initialized in Port: ${DB_PORT}`);
   });
 });
