@@ -11,31 +11,28 @@ module.exports = (sequelize) => {
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
       },
+
       name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      height_min: {
-        type: DataTypes.STRING,
+
+      height: {
+        type: DataTypes.JSON,
         allowNull: false,
       },
-      height_max: {
-        type: DataTypes.STRING,
+
+      weight: {
+        type: DataTypes.JSON,
         allowNull: false,
       },
-      weight_min: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      weight_max: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+
       image: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      life_years: {
+
+      years_life: {
         type: DataTypes.STRING,
         allowNull: true,
       },
