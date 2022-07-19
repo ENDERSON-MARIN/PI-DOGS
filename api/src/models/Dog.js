@@ -37,12 +37,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
 
-      years_life_min: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-
-      years_life_max: {
+      years_life: {
         type: DataTypes.STRING,
         allowNull: true,
       },
