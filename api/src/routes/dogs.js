@@ -34,11 +34,11 @@ router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const allDogs = await getAllDogs();
-    const dogById = allDogs.find((e) => e.id == id);
+    const dogById = allDogs.find((e) => e.id === Number(id));
     if (dogById) {
       res.status(200).json(dogById);
     } else {
-      res.status(404).send("the id does not exist");
+      res.status(404).send(`Dog with id ${id} not exist!`);
     }
   } catch (error) {
     console.log(error);
