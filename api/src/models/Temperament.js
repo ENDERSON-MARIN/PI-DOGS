@@ -15,7 +15,6 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          is: /^([a-zA-Z]+)$/,
           notNull: { msg: "The Temperament name field cannot be null " },
           notEmpty: true,
         },

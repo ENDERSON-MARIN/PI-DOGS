@@ -22,11 +22,11 @@ const bodySchema = Joi.object({
   height_max: Joi.number().min(1).precision(1).required(),
   weight_min: Joi.number().min(1).precision(1).required(),
   weight_max: Joi.number().min(1).precision(1).required(),
-  years_life: Joi.string().regex(/^([a-zA-Z0-9- ]+)$/),
+  years_life: Joi.string(),
   image: Joi.string()
     .regex(/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i)
     .max(255),
-  temperaments: Joi.array().items(Joi.number().min(1).max(124)).required(),
+  temperaments: Joi.array().items(Joi.string().min(1).max(124)).required(),
 });
 
 const {

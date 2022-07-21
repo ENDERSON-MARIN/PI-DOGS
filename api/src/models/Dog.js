@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
         type: DataTypes.UUID,
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
-        allowNull:false,
+        allowNull: false,
         validate: {
           isUUID: 4,
           notNull: { msg: "The id field cannot be null " },
@@ -63,9 +63,6 @@ module.exports = (sequelize) => {
       years_life: {
         type: DataTypes.STRING,
         allowNull: true,
-        validate: {
-          is: /^([a-zA-Z0-9 ]+)$/,
-        },
       },
 
       image: {
