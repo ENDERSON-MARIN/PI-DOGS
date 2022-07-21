@@ -4,6 +4,7 @@ const {
   getAllDogsById,
   createDog,
   updateDog,
+  deleteDog,
 } = require("../controllers/dogs");
 
 const router = Router();
@@ -19,5 +20,8 @@ router.post("/", createDog);
 
 /* UPDATE DOG IN THE DATABASE */
 router.put("/:id", updateDog)
+
+/* DELETE DOG IN THE DATABASE */
+router.delete("/:id", deleteDog)
 
 module.exports = router;

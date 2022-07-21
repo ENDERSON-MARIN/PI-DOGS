@@ -109,41 +109,54 @@ const updateDog = async (req, res, next) => {
       image,
       temperaments,
     } = req.body;
-    if (id) {
-      /* BUSCO EL DOG DE LA BD POR EL ID */
-      let dogDb = await Dog.findOne({
-        where: {
-          id: id,
+
+    /* BUSCO EL DOG DE LA BD POR EL ID */
+    let dogDb = await Dog.findOne({
+      where: {
+        id: id,
+      },
+    });
+    /* ACTUALIZO EL DOG CON LOS DATOS QUE RECIBO DEL BODY */
+    const updatedDog = await dogDb.update({
+      name,
+      height_min,
+      height_max,
+      weight_min,
+      weight_max,
+      years_life,
+      image,
+    });
+    /* BUSCO DENTRO DEL MODELO DE TEMPERAMENTS LOS QUE COINCIDAN CON LOS QUE RECIBO DEL BODY */
+    let temperamentsDb = await Temperament.findAll({
+      where: {
+        name: {
+          [Op.in]: temperaments,
         },
-      });
-      /* ACTUALIZO EL DOG CON LOS DATOS QUE RECIBO DEL BODY */
-      const updatedDog = await dogDb.update({
-        name,
-        height_min,
-        height_max,
-        weight_min,
-        weight_max,
-        years_life,
-        image,
-      });
-      /* BUSCO DENTRO DEL MODELO DE TEMPERAMENTS LOS QUE COINCIDAN CON LOS QUE RECIBO DEL BODY */
-      let temperamentsDb = await Temperament.findAll({
-        where: {
-          name: {
-            [Op.in]: temperaments,
-          },
-        },
-      });
-      /* SETEO LOS TEMPERAMENTS AL OBJETO DE DOG */
-      await updatedDog.setTemperaments(temperamentsDb);
-      res.status(200).send({
-        succMsg: "Dog Updated Successfully!",
-        updatedDog,
-      });
+      },
+    });
+    /* SETEO LOS TEMPERAMENTS AL OBJETO DE DOG */
+    await updatedDog.setTemperaments(temperamentsDb);
+    res.status(200).send({
+      succMsg: "Dog Updated Successfully!",
+      updatedDog,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/* DELETE DOG IN THE DATABASE */
+const deleteDog = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const dogDb = await Dog.findByPk(id);
+
+    if (dogDb === null) {
+      return res.status(400).send("Dog not found!");
     } else {
-      res.status(400).send({
-        errorMsg: "La ruta debe contener el id del perro a editar",
-      });
+      await dogDb.destroy();
+      return res.status(200).send("Dog Deleted Successfully! ");
     }
   } catch (error) {
     next(error);
@@ -155,4 +168,5 @@ module.exports = {
   getAllDogsById,
   createDog,
   updateDog,
+  deleteDog,
 };
