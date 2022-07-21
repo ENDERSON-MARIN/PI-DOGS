@@ -4,10 +4,10 @@ const { API_KEY } = process.env;
 
 /* GET ALL DOGS FROM THE API */
 const getDogsApi = async () => {
-  const apiUrl = (
+  const dataApi = (
     await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
   ).data;
-  const apiDogs = apiUrl.map((e) => {
+  const apiDogs = dataApi.map((e) => {
     return {
       id: e.id,
       name: e.name,
@@ -44,7 +44,7 @@ const getDogsDb = async () => {
         height_max: d.dataValues.height_max,
         weight_min: d.dataValues.weight_min,
         weight_max: d.dataValues.weight_max,
-        temperaments: d.dataValues.temperaments.map((g) => d.dataValues.name),
+        temperaments: d.dataValues.temperaments.map((t) => t.dataValues.name),
         years_life: d.dataValues.years_life,
         image: d.dataValues.image,
       };
@@ -75,7 +75,7 @@ const getAllTemperaments = async () => {
   const dataApi = (
     await axios(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
   ).data;
-  let temperaments = dataApi.map((e) => e.temperament);
+  let temperaments = dataApi.map((e) => e.temperament);//Los mapeo y devuelvo los temperamentos
 
   let temperamentsArray = temperaments.join().split(","); //los une y convierte a array
 

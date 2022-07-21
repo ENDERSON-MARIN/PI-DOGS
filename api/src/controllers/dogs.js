@@ -1,5 +1,8 @@
+const { Dog, Temperament } = require("../db");
+const { Op } = require("sequelize");
 const { getAllDogs, getDogsDb } = require("../controllers/index");
 
+/* GET ALL DOGS FROM DB-API OR BY NAME */
 const getAllDogsOrByName = async (req, res) => {
   try {
     const { name } = req.query;
@@ -24,7 +27,7 @@ const getAllDogsOrByName = async (req, res) => {
 const getAllDogsById = async (req, res) => {
   try {
     const { id } = req.params;
-    //si el id es mayor a 7 y el tipo de dato es string busco en la base de datos, sino busco en la API
+    //si el id es mayor a 7 y el tipo de dato es string busco en la base de datos por el UUID
     if (id.length > 7 && typeof id === "string") {
       const DogsDb = await getDogsDb();
       const DogByIdDb = DogsDb.find((d) => d.id === id);
@@ -47,7 +50,109 @@ const getAllDogsById = async (req, res) => {
   }
 };
 
+/* CREATE NEW DOG IN THE DATABASE */
+
+const createDog = async (req, res, next) => {
+  try {
+    /* ME TRAIGO TODOS LOS VALORES DEL CUERPO DE LA PETICION */
+    const {
+      name,
+      height_min,
+      height_max,
+      weight_min,
+      weight_max,
+      years_life,
+      image,
+      temperaments,
+    } = req.body;
+    /* CREO EL NUEVO DOG */
+    const newDog = await Dog.create({
+      name,
+      height_min,
+      height_max,
+      weight_min,
+      weight_max,
+      years_life,
+      image,
+    });
+    /* BUSCO DENTRO DEL MODELO DE TEMPERAMENTOS CUYOS NOMBRES COINCIDAN CON LOS QUE ME PASA EL CLIENTE */
+    let temperamentsInDb = await Temperament.findAll({
+      where: {
+        name: {
+          [Op.in]: temperaments,
+        },
+      },
+    });
+
+    /* AGREGO AL NUEVO DOG LOS TEMPERAMENTOS MEDIANTE EL ADD */
+    newDog.addTemperament(temperamentsInDb);
+    res.status(200).json({
+      succMsg: "Dog Created Successfully!",
+      newDog,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/* UPDATE ONE DOG IN THE DATABASE */
+const updateDog = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const {
+      name,
+      height_min,
+      height_max,
+      weight_min,
+      weight_max,
+      years_life,
+      image,
+      temperaments,
+    } = req.body;
+    if (id) {
+      /* BUSCO EL DOG DE LA BD POR EL ID */
+      let dogDb = await Dog.findOne({
+        where: {
+          id: id,
+        },
+      });
+      /* ACTUALIZO EL DOG CON LOS DATOS QUE RECIBO DEL BODY */
+      const updatedDog = await dogDb.update({
+        name,
+        height_min,
+        height_max,
+        weight_min,
+        weight_max,
+        years_life,
+        image,
+      });
+      /* BUSCO DENTRO DEL MODELO DE TEMPERAMENTS LOS QUE COINCIDAN CON LOS QUE RECIBO DEL BODY */
+      let temperamentsDb = await Temperament.findAll({
+        where: {
+          name: {
+            [Op.in]: temperaments,
+          },
+        },
+      });
+      /* SETEO LOS TEMPERAMENTS AL OBJETO DE DOG */
+      await updatedDog.setTemperaments(temperamentsDb);
+      res.status(200).send({
+        succMsg: "Dog Updated Successfully!",
+        updatedDog,
+      });
+    } else {
+      res.status(400).send({
+        errorMsg: "La ruta debe contener el id del perro a editar",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllDogsOrByName,
   getAllDogsById,
+  createDog,
+  updateDog,
 };

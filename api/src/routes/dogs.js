@@ -1,5 +1,10 @@
 const { Router } = require("express");
-const { getAllDogsOrByName, getAllDogsById } = require("../controllers/dogs");
+const {
+  getAllDogsOrByName,
+  getAllDogsById,
+  createDog,
+  updateDog,
+} = require("../controllers/dogs");
 
 const router = Router();
 
@@ -8,5 +13,11 @@ router.get("/", getAllDogsOrByName);
 
 /* GET ALL DOGS BY ID */
 router.get("/:id", getAllDogsById);
+
+/* CREATE NEW DOG IN THE DATABASE */
+router.post("/", createDog);
+
+/* UPDATE DOG IN THE DATABASE */
+router.put("/:id", updateDog)
 
 module.exports = router;
