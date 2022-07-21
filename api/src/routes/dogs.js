@@ -17,12 +17,12 @@ const paramsSchema = Joi.object({
 });
 
 const bodySchema = Joi.object({
-  name: Joi.string().min(3).max(50).required(),
+  name: Joi.string().min(3).max(100).required(),
   height_min: Joi.number().min(1).precision(1).required(),
   height_max: Joi.number().min(1).precision(1).required(),
   weight_min: Joi.number().min(1).precision(1).required(),
   weight_max: Joi.number().min(1).precision(1).required(),
-  years_life: Joi.string(),
+  years_life: Joi.string().min(1).max(50),
   image: Joi.string()
     .regex(/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i)
     .max(255),
