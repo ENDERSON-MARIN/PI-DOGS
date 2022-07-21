@@ -26,7 +26,6 @@ const getDogsApi = async () => {
 };
 
 /* GET DOGS FROM THE DB */
-
 const getDogsDb = async () => {
   try {
     const dogsDb = await Dog.findAll({
@@ -56,7 +55,6 @@ const getDogsDb = async () => {
 };
 
 /* GET ALL DOGS FROM API AND DB */
-
 const getAllDogs = async () => {
   try {
     const dogsApi = await getDogsApi();
@@ -70,7 +68,6 @@ const getAllDogs = async () => {
 };
 
 /* GET ALL TEMPERAMENTS */
-
 const getAllTemperaments = async () => {
   const dataApi = (
     await axios(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)

@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 const { getAllDogs, getDogsDb } = require("../controllers/index");
 
 /* GET ALL DOGS FROM DB-API OR BY NAME */
-const getAllDogsOrByName = async (req, res) => {
+const getAllDogsOrByName = async (req, res, next) => {
   try {
     const { name } = req.query;
     const allDogs = await getAllDogs();
@@ -18,13 +18,12 @@ const getAllDogsOrByName = async (req, res) => {
       res.status(200).send(allDogs);
     }
   } catch (error) {
-    res.status(400).send({ errorMsg: error });
+    next(error);
   }
 };
 
 /* GET ONE DOG BY ID FROM DB OR API */
-
-const getAllDogsById = async (req, res) => {
+const getAllDogsById = async (req, res, next) => {
   try {
     const { id } = req.params;
     //si el id es mayor a 7 y el tipo de dato es string busco en la base de datos por el UUID
@@ -45,13 +44,12 @@ const getAllDogsById = async (req, res) => {
         res.status(404).send(`Dog with id ${id} not exist in the API!`);
       }
     }
-  } catch (err) {
-    res.status(400).send({ err: "Dog not found" });
+  } catch (error) {
+    next(error);
   }
 };
 
 /* CREATE NEW DOG IN THE DATABASE */
-
 const createDog = async (req, res, next) => {
   try {
     /* ME TRAIGO TODOS LOS VALORES DEL CUERPO DE LA PETICION */
