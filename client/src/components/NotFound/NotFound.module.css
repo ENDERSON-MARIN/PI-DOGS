@@ -1,0 +1,75 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.bg {
+  background-image: url("../../images/404.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.btnAlign {
+  margin-top: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  border: 0.25em solid rgb(217, 176, 255);
+  padding: 1em 3em;
+  color: rgb(217, 176, 255);
+  font-size: 15px;
+  font-weight: bold;
+  background-color: rgb(100, 61, 136);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em 0.25em rgb(217, 176, 255),
+    0 0 4em 1em rgba(191, 123, 255, 0.781),
+    inset 0 0 0.75em 0.25em rgb(217, 176, 255);
+  text-shadow: 0 0 0.5em rgb(217, 176, 255);
+  position: relative;
+  transition: all 0.3s;
+  top: 300px;
+}
+
+.button::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-pagination);
+  filter: blur(2em);
+  opacity: 0.7;
+  transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
+}
+
+.button:hover {
+  color: var(--color-white);
+  background-color: var(--color-pagination);
+  box-shadow: 0 0 1em 0.25em rgb(217, 176, 255),
+    0 0 4em 2em rgba(191, 123, 255, 0.781),
+    inset 0 0 0.75em 0.25em rgb(217, 176, 255);
+  cursor: pointer;
+}
+
+.button:active {
+  box-shadow: 0 0 0.6em 0.25em rgb(217, 176, 255),
+    0 0 2.5em 2em rgba(191, 123, 255, 0.781),
+    inset 0 0 0.5em 0.25em rgb(217, 176, 255);
+}
+@media screen and (max-width: 1052px) {
+  .title {
+    font-size: 60px;
+  }
+}
