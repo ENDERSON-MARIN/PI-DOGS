@@ -14,6 +14,7 @@ import {
   ORDER_BY_WEIGHT,
   ADD_DOG_FAVORITES,
   REMOVE_DOG_FAVORITES,
+  CLEAR_DOG_DETAILS
 } from "./types.js";
 
 /* GET ALL DOGS */
@@ -104,7 +105,7 @@ export function getDogById(id) {
     };
   }
 
-  return { type: CLEAR_VIDEOGAME_DETAIL };
+  return { type: CLEAR_DOG_DETAILS };
 }
 
 /* GET DOGS BY TEMPERAMENTS */
