@@ -6,7 +6,7 @@ const Welcome = () => {
   return (
     <BgContainer>
       <img src={welcomeImage} alt="dogs-breeds" />
-      <StartButton href="/home">Know the breeds of dogs!</StartButton>
+      <StartButton href="/home">Click here and you know the breeds of dogs!</StartButton>
     </BgContainer>
   );
 };
