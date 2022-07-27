@@ -18,14 +18,9 @@
   --color-primary-variant: rgba(77, 181, 255, 0.4);
   --color-pagination: #1db954;
   --color-white: #fff;
-  --color-light: rgba(255, 255, 255, 0.6);
+  --color-black: #000000;
+  --color-light:  rgb(128, 128, 128);
   
-  /* PARA LAS MEDIA QUERYS RESPONSIVE */
-  --container-width-lg: 75%;
-  --container-width-md: 86%;
-  --container-width-sm: 90%;
-
-  --transition: all 400ms ease;
 }
 
 /* PARA DESPLAZAMIENTOS SUAVES EN LA APP */
@@ -43,11 +38,4 @@ body {
   background: var(--color-bg);
   color: var(--color-white);
   line-height: 1.7;
-}
-
-/* ===========GENERAL STYLES============= */
-
-.container {
-  width: var(--container-width-lg);
-  margin: 0 auto;
 }

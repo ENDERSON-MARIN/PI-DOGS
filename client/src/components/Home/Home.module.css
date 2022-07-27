@@ -1,10 +1,10 @@
 .contentWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 16rem);
   padding: 15px;
   grid-gap: 15px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 15rem);
   justify-content: center;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 .selectContainer {
   display: flex;
@@ -36,7 +36,6 @@
   margin: 10px;
 }
 
-
 .reloadBtnContainer {
   display: flex;
   list-style: none;
@@ -65,3 +64,15 @@
   background-color: #1db954;
 }
 
+/* ==================MEDIA QUERIES (MEDIUM DEVICES)======================== */
+
+@media screen and (min-width: 1289px) {
+  /* .contentWrapper {
+    grid-template-columns: repeat(auto-fit, 23rem);
+    margin-left: 100px;
+  } */
+}
+/* ==================MEDIA QUERIES (SMALL DEVICES)======================== */
+
+@media screen and (max-width: 600px) {
+}

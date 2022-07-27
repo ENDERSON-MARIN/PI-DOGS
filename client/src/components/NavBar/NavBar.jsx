@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Style from "./NavBar.module.css";
 import { NavLink } from "react-router-dom";
 
+import Swal from "sweetalert2";
+
 const NavBar = ({ onSearch }) => {
   const [value, setValue] = useState("");
   const handleSearchValue = (e) => {
@@ -11,7 +13,14 @@ const NavBar = ({ onSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!value) {
-      return alert("You must write a dog name!");
+      Swal.fire({
+        title: "Not name!",
+        text: "You must write a dog name!",
+        icon: "error",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "red",
+        timer: "3000",
+      });
     } else {
       onSearch(value);
       setValue("");

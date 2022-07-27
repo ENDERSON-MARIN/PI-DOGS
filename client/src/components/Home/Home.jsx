@@ -47,7 +47,7 @@ const Home = () => {
     setStatus(e.target.value);
     dispatch(filterDogsByExistence(e.target.value));
     setCurrentPage(1);
-    setRefresh((prevState) => !prevState); // refresh
+    setRefresh((prevState) => !prevState); // refresh->true
   };
 
   //--FILTER BY ALPHABETICAL-->A-Z/Z-A
@@ -56,7 +56,7 @@ const Home = () => {
     setStatus(e.target.value);
     dispatch(orderDogsByAlphabetical(e.target.value));
     setCurrentPage(1);
-    setRefresh((prevState) => !prevState); // refresh
+    setRefresh((prevState) => !prevState); // refresh->true
   };
 
   //--ORDER BY WEIGHT-->MIN/MAX
@@ -65,14 +65,14 @@ const Home = () => {
     setStatus(e.target.value);
     dispatch(orderDogsByWeight(e.target.value));
     setCurrentPage(1);
-    setRefresh((prevState) => !prevState); // refresh
+    setRefresh((prevState) => !prevState); //  refresh->true
   };
   //--FILTER BY TEMPERAMENTS (search by temperaments)
   const handleFilterTemperaments = (e) => {
     e.preventDefault();
     dispatch(filterDogsByTemperaments(e.target.value, status)); //gets the value and the status
     setCurrentPage(1);
-    setRefresh((prevState) => !prevState); // refresh
+    setRefresh((prevState) => !prevState); //  refresh->true
   };
 
   const handleSearch = (value) => {
@@ -90,7 +90,7 @@ const Home = () => {
   return (
     <>
       <NavBar onSearch={handleSearch} />
-      <main>
+      <main className={Style.main}>
         <div>
           <div>
             <div className={Style.selectContainer}>
@@ -147,13 +147,6 @@ const Home = () => {
                 </select>
               </div>
             </div>
-            <div className={Style.paginated}>
-              <Paginated
-                pageFunction={paginar}
-                data={dogsPerPage}
-                current={currentPage}
-              />
-            </div>
             <div className={Style.reloadBtnContainer}>
               <button
                 data-text="Reload"
@@ -161,7 +154,7 @@ const Home = () => {
                 onClick={handleReloadBtn}
               >
                 <span className={Style.hoverText} aria-hidden="true">
-                  &nbsp;reload&nbsp;
+                  &nbsp;Reset Dogs&nbsp;
                 </span>
               </button>
             </div>
@@ -169,7 +162,8 @@ const Home = () => {
               {currentDogs.length > 0 && !loader ? (
                 currentDogs.map((d) => {
                   return (
-                    <DogCard
+                    <>
+                     <DogCard
                       key={d.id}
                       id={d.id}
                       name={d.name}
@@ -178,6 +172,8 @@ const Home = () => {
                       weight_max={d.weight_max}
                       temperaments={d.temperaments}
                     />
+                    </>
+                   
                   );
                 })
               ) : !currentDogs && loader ? (
@@ -186,6 +182,13 @@ const Home = () => {
                 <Loader />
               )}
             </section>
+            <div className={Style.paginated}>
+              <Paginated
+                pageFunction={paginar}
+                data={dogsPerPage}
+                current={currentPage}
+              />
+            </div>
           </div>
         </div>
       </main>

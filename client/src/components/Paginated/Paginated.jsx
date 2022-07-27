@@ -101,7 +101,7 @@ export default function Paginated({pageFunction, data, current}) {
 
     return (
         <nav className={style.all}>
-            <button className={style.previous} onClick={(e) => firstPage(e)} disabled={current <= 1} >{'|< First'}</button>
+            <button className={style.previous} onClick={(e) => firstPage(e)} disabled={current <= 1} >{'<< First'}</button>
             <button className={style.previous} onClick={(e) => previous(e, current)} disabled={current <= 1}> {'< Prev'} </button>
 
             <ul className={style.listaPag}>
@@ -109,7 +109,7 @@ export default function Paginated({pageFunction, data, current}) {
             </ul >
             
             <button className={style.next} onClick={(e) => next(e, current)} disabled={current >= max} > {'Next >'} </button>
-            <button className={style.next} onClick={(e) => lastPage(e)} disabled={current >= max}>{'Last >|'}</button>
+            <button className={style.next} onClick={(e) => lastPage(e)} disabled={current >= max}>{'Last >>'}</button>
         </nav>
     )
 }

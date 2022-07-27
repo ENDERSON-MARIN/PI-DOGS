@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 /* Importo los actions types */
 import {
   GET_ALL_DOGS,
@@ -84,7 +85,14 @@ export function getDogsByName(name) {
         payload: dogsName.data,
       });
     } catch (error) {
-      return alert(`The Dog name ${name} not found!`);
+      Swal.fire({
+        title: "Not found!",
+        text: `The Dog name ${name} not found!`,
+        icon: "error",
+        confirmButtonText: "Ok",
+        confirmButtonColor: "red",
+        timer: "3000",
+      });
     }
   };
 }
