@@ -12,21 +12,21 @@ export default function Paginated({pageFunction, data, current}) {
     const [minPageDisplayed, setMinPageDisplayed] = useState(0);
 
 
-    const arrayPaginado = [];
+    const arrayPaginated = [];
     const max = Math.ceil(allDogs.length / data);
 
     for (let n = 1; n <= max; n++) {
-        arrayPaginado.push(n)
+        arrayPaginated.push(n)
     }
 
     const movePages = (page) => {
-        if (page === arrayPaginado?.length) {
+        if (page === arrayPaginated?.length) {
             movePagesPrevius(0)
             setMaxPageDisplayed(4);
             setMinPageDisplayed(0);
 
         } else {
-            if (page === 0) page = arrayPaginado?.length;
+            if (page === 0) page = arrayPaginated?.length;
             let maxi = page + pageDisplayed - 1;
             let mini = maxi - pageDisplayed;
             setMaxPageDisplayed(maxi);
@@ -71,7 +71,7 @@ export default function Paginated({pageFunction, data, current}) {
         e.preventDefault();
         movePagesPrevius(page);
         if (page === 1) {
-            pageFunction(arrayPaginado?.length);
+            pageFunction(arrayPaginated?.length);
         }
         else pageFunction(page - 1);
     }
@@ -79,7 +79,7 @@ export default function Paginated({pageFunction, data, current}) {
     const next = (e, page) => {
         e.preventDefault()
         movePages(page);
-        if (page === arrayPaginado?.length) {
+        if (page === arrayPaginated?.length) {
             pageFunction(1);
         }
         else {
@@ -87,7 +87,7 @@ export default function Paginated({pageFunction, data, current}) {
         }
     }
 
-    const renderPageNumber = arrayPaginado?.map((pages) => {
+    const renderPageNumber = arrayPaginated?.map((pages) => {
 
         if (pages < maxPageDisplayed + 1 && pages > minPageDisplayed - 1) {
             return <li key={pages} id={pages} className={current === pages ? style.active : null} onClick={() => handleClik(pages)}>

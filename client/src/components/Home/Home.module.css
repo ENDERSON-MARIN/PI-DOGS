@@ -1,0 +1,67 @@
+.contentWrapper {
+  padding: 15px;
+  grid-gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 15rem);
+  justify-content: center;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.selectContainer {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background: black;
+}
+
+.box select {
+  background-color: #000000;
+  color: white;
+  padding: 5px;
+  margin: 5px;
+  width: 250px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  box-shadow: 0 5px 15px rgba(225, 0, 255, 0.687);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  text-align: center;
+}
+
+.paginated {
+  text-align: center;
+  margin: 10px;
+}
+
+
+.reloadBtnContainer {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.reloadBtn {
+  padding: 8px;
+  background-color: #340034;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bolder;
+  box-shadow: 0 0 1em 0.25em rgb(217, 176, 255),
+    0 0 4em 1em rgba(191, 123, 255, 0.781),
+    inset 0 0 0.75em 0.25em rgb(217, 176, 255);
+  text-shadow: 0 0 0.5em rgb(217, 176, 255);
+  transition: all 0.2s;
+  margin-top: 20px;
+}
+
+.reloadBtn:hover {
+  cursor: pointer;
+  background-color: #1db954;
+}
+

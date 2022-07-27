@@ -19,7 +19,7 @@
     margin: 1px;
     width: fit-content;
     height: fit-content;
-    background-color:  #6CBFE8;
+    background-color:  var(--color-bg-variant);
     border-radius: 5px;
 }
 
@@ -31,7 +31,7 @@
 
 
 .listaPag li.active{
-    background-color: #1C517A;
+    background-color: var(--color-bg);
     color: white;
 }
 

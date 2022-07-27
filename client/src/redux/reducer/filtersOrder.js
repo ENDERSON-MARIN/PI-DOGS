@@ -32,13 +32,13 @@ export const orderByAlphabetic = (order, arrayDogs) => {
 
 export const orderByWeight = (weight, arrayDogs) => {
   switch (weight) {
-    case "Higth":
+    case "Max":
       return arrayDogs.sort((a, b) => {
         if (a.weight_max > b.weight_max) return -1;
         if (b.weight_max > a.weight_max) return 1;
         else return 0;
       });
-    case "Lower":
+    case "Min":
       return arrayDogs.sort((a, b) => {
         if (a.weight_min > b.weight_min) return 1;
         if (b.weight_min > a.weight_min) return -1;
