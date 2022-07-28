@@ -47,7 +47,7 @@ const dogsFavorites = useSelector(state => state.dogsFavorites);
 
           <button className={Style.cardLike}
             onClick={handleAddFavorites}
-            disabled={dogsFavorites.find((v) => v.id === id)}
+            disabled={dogsFavorites?.find((v) => v.id === id)}
           >
             💖
           </button>
