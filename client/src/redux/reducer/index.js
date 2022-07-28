@@ -95,7 +95,7 @@ function rootReducer(state = initialState, { type, payload }) {
     case FILTER_BY_TEMPERAMENTS:
       return {
         ...state,
-        dogsCopy: filterByTemperaments(
+        dogs: filterByTemperaments(
           payload["temperaments"],
           payload["existence"] === "API"
             ? state.dogsApi
@@ -107,17 +107,17 @@ function rootReducer(state = initialState, { type, payload }) {
     case FILTER_BY_EXISTENCE:
       return {
         ...state,
-        dogsCopy: filterByExistence(payload, state.dogs),
+        dogs: filterByExistence(payload, state.dogs),
       };
     case ORDER_BY_ALPHABETICAL:
       return {
         ...state,
-        dogsCopy: orderByAlphabetic(payload, state.dogs),
+        dogs: orderByAlphabetic(payload, state.dogs),
       };
     case ORDER_BY_WEIGHT:
       return {
         ...state,
-        dogsCopy: orderByWeight(payload, state.dogs),
+        dogs: orderByWeight(payload, state.dogs),
       };
 
     case ADD_DOG_FAVORITES: {

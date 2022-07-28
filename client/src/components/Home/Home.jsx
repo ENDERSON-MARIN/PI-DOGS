@@ -20,7 +20,7 @@ import {
 const Home = () => {
   const [, /*refresh*/ setRefresh] = useState(false);
   const dispatch = useDispatch();
-  const allDogs = useSelector((state) => state.dogsCopy);
+  const allDogs = useSelector((state) => state.dogs);
   const temperaments = useSelector((state) => state.temperaments);
   const [status, setStatus] = useState("All");
   const [loader, setLoader] = useState(true);
@@ -100,7 +100,7 @@ const Home = () => {
                   name="Temperaments"
                   defaultValue="Filter by Temperaments"
                 >
-                  <option value="Filter by Temperaments" selected disabled>
+                  <option value="Filter by Temperaments" disabled>
                     {" "}
                     FILTER BY TEMPERAMENTS
                   </option>
@@ -112,11 +112,12 @@ const Home = () => {
                     );
                   })}
                 </select>
+
                 <select
                   onChange={(e) => handleFilterExistence(e)}
                   defaultValue="Filterby"
                 >
-                  <option value="Filterby" selected disabled>
+                  <option value="Filterby" disabled>
                     {" "}
                     FILTER BY EXISTENCE{" "}
                   </option>
@@ -130,7 +131,7 @@ const Home = () => {
                   name="Temperament"
                   defaultValue="Sortby"
                 >
-                  <option value="Sortby" selected disabled>
+                  <option value="Sortby" disabled>
                     {" "}
                     ORDER BY ALPHABETIC{" "}
                   </option>
@@ -138,7 +139,7 @@ const Home = () => {
                   <option value="Z-A"> Z-A </option>
                 </select>
                 <select onChange={handleOrderByWeight} defaultValue="Weight">
-                  <option value="Weight" selected disabled>
+                  <option value="Weight" disabled>
                     {" "}
                     ORDER BY WEIGHT{" "}
                   </option>
@@ -162,8 +163,7 @@ const Home = () => {
               {currentDogs.length > 0 && !loader ? (
                 currentDogs.map((d) => {
                   return (
-                    <>
-                     <DogCard
+                    <DogCard
                       key={d.id}
                       id={d.id}
                       name={d.name}
@@ -172,8 +172,6 @@ const Home = () => {
                       weight_max={d.weight_max}
                       temperaments={d.temperaments}
                     />
-                    </>
-                   
                   );
                 })
               ) : !currentDogs && loader ? (

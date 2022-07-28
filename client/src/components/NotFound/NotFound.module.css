@@ -1,10 +1,5 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  align-items: flex-end;
-}
+  display: flex;}
 
 .bg {
   background-image: url("../../images/404.gif");
@@ -37,7 +32,7 @@
   text-shadow: 0 0 0.5em rgb(217, 176, 255);
   position: relative;
   transition: all 0.3s;
-  top: 300px;
+  top: 150px;
 }
 
 .button::after {
