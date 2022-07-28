@@ -11,10 +11,6 @@ export const filterByExistence = (existence, stateDogs) => {
   }
 };
 
-export const filterByTemperaments = (temperaments, stateDogs) => {
-  return stateDogs.filter((dog) => dog.temperaments.includes(temperaments));
-};
-
 export const orderByAlphabetic = (order, stateDogs) => {
   switch (order) {
     case "A-Z":

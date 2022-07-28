@@ -19,7 +19,6 @@ import {
 /* Importo las funciones de filtrado y ordenamiento */
 import {
   filterByExistence,
-  filterByTemperaments,
   orderByAlphabetic,
   orderByWeight,
 } from "./filtersOrder";
@@ -73,7 +72,7 @@ function rootReducer(state = initialState, { type, payload }) {
     case GET_DOGS_BY_NAME:
       return {
         ...state,
-        dogsCopy: payload,
+        dogs: payload,
       };
     case GET_DOG_BY_ID:
       return {
@@ -86,38 +85,45 @@ function rootReducer(state = initialState, { type, payload }) {
         dogDetails: undefined,
       };
     }
-
     case GET_ALL_TEMPERAMENTS:
       return {
         ...state,
         temperaments: payload,
       };
     case FILTER_BY_TEMPERAMENTS:
+      const allDogs = state.dogsCopy;
+      const filterTemp =
+        payload === "All"
+          ? allDogs
+          : allDogs.filter((e) => {
+              if (typeof e.temperaments === "string") {
+                return e.temperaments.includes(payload);
+              }
+              if (Array.isArray(e.temperaments)) {
+                let temps = e.temperaments.map((e) => e.name);
+                return temps.includes(payload);
+              }
+              return true;
+            });
       return {
         ...state,
-        dogs: filterByTemperaments(
-          payload["temperaments"],
-          payload["existence"] === "API"
-            ? state.dogsApi
-            : payload["existence"] === "DB"
-            ? state.dogsDb
-            : state.dogs
-        ),
+        dogs: filterTemp,
       };
+
     case FILTER_BY_EXISTENCE:
       return {
         ...state,
-        dogs: filterByExistence(payload, state.dogs),
+        dogs: filterByExistence(payload, state.dogsCopy),
       };
     case ORDER_BY_ALPHABETICAL:
       return {
         ...state,
-        dogs: orderByAlphabetic(payload, state.dogs),
+        dogs: orderByAlphabetic(payload, state.dogsCopy),
       };
     case ORDER_BY_WEIGHT:
       return {
         ...state,
-        dogs: orderByWeight(payload, state.dogs),
+        dogs: orderByWeight(payload, state.dogsCopy),
       };
 
     case ADD_DOG_FAVORITES: {

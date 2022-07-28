@@ -18,11 +18,10 @@ import {
 } from "../../redux/actions/index";
 
 const Home = () => {
-  const [, /*refresh*/ setRefresh] = useState(false);
   const dispatch = useDispatch();
   const allDogs = useSelector((state) => state.dogs);
-  const temperaments = useSelector((state) => state.temperaments);
-  const [status, setStatus] = useState("All");
+  const allTemperaments = useSelector((state) => state.temperaments);
+  const [/* status */, setStatus] = useState("All");
   const [loader, setLoader] = useState(true);
 
   //Paginated section
@@ -47,7 +46,6 @@ const Home = () => {
     setStatus(e.target.value);
     dispatch(filterDogsByExistence(e.target.value));
     setCurrentPage(1);
-    setRefresh((prevState) => !prevState); // refresh->true
   };
 
   //--FILTER BY ALPHABETICAL-->A-Z/Z-A
@@ -56,7 +54,6 @@ const Home = () => {
     setStatus(e.target.value);
     dispatch(orderDogsByAlphabetical(e.target.value));
     setCurrentPage(1);
-    setRefresh((prevState) => !prevState); // refresh->true
   };
 
   //--ORDER BY WEIGHT-->MIN/MAX
@@ -65,14 +62,12 @@ const Home = () => {
     setStatus(e.target.value);
     dispatch(orderDogsByWeight(e.target.value));
     setCurrentPage(1);
-    setRefresh((prevState) => !prevState); //  refresh->true
   };
   //--FILTER BY TEMPERAMENTS (search by temperaments)
   const handleFilterTemperaments = (e) => {
     e.preventDefault();
-    dispatch(filterDogsByTemperaments(e.target.value, status)); //gets the value and the status
+    dispatch(filterDogsByTemperaments(e.target.value));
     setCurrentPage(1);
-    setRefresh((prevState) => !prevState); //  refresh->true
   };
 
   const handleSearch = (value) => {
@@ -96,21 +91,20 @@ const Home = () => {
             <div className={Style.selectContainer}>
               <div className={Style.box}>
                 <select
-                  onChange={handleFilterTemperaments}
-                  name="Temperaments"
+                  onChange={(e) => handleFilterTemperaments(e)}
                   defaultValue="Filter by Temperaments"
                 >
                   <option value="Filter by Temperaments" disabled>
                     {" "}
                     FILTER BY TEMPERAMENTS
                   </option>
-                  {temperaments.map((t) => {
-                    return (
-                      <option key={t.id} value={t.name}>
-                        {t.name}
+                  <option value="All">All Temperaments</option>
+                  {allTemperaments &&
+                    allTemperaments.map((e) => (
+                      <option value={e.name} key={e.id}>
+                        {e.name}
                       </option>
-                    );
-                  })}
+                    ))}
                 </select>
 
                 <select
@@ -128,7 +122,6 @@ const Home = () => {
 
                 <select
                   onChange={handleOrderByAlphabetical}
-                  name="Temperament"
                   defaultValue="Sortby"
                 >
                   <option value="Sortby" disabled>

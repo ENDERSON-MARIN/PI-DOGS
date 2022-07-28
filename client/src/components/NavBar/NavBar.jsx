@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 const NavBar = ({ onSearch }) => {
   const [value, setValue] = useState("");
+
   const handleSearchValue = (e) => {
     setValue(e.target.value);
   };
@@ -36,7 +37,7 @@ const NavBar = ({ onSearch }) => {
           <form className={Style.searchIcon} onSubmit={handleSubmit}>
             <input
               className={Style.searchInput}
-              onChange={handleSearchValue}
+              onChange={handleSearchValue}//se va cambiando el valor en el estado local
               value={value}
               type="search"
               placeholder="Search Dogs by name..."

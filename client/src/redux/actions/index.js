@@ -15,7 +15,7 @@ import {
   ORDER_BY_WEIGHT,
   ADD_DOG_FAVORITES,
   REMOVE_DOG_FAVORITES,
-  CLEAR_DOG_DETAILS
+  CLEAR_DOG_DETAILS,
 } from "./types.js";
 
 /* GET ALL DOGS */
@@ -132,10 +132,10 @@ export function getDogsByTemperaments() {
 }
 
 /* FILTER DOGS BY TEMPERAMENTS */
-export function filterDogsByTemperaments(temperaments, status) {
+export function filterDogsByTemperaments(payload) {
   return {
     type: FILTER_BY_TEMPERAMENTS,
-    payload: { temperaments, status },
+    payload,
   };
 }
 
