@@ -15,11 +15,11 @@ const getDogsApi = async () => {
       height_max: Number(e.height.metric.split("-")[1] || NaN),
       weight_min: Number(e.weight.metric.split("-")[0] || NaN),
       weight_max: Number(e.weight.metric.split("-")[1] || NaN),
-      years_life: e.life_span || " Years live not found",
+      years_life: e.life_span || "Not found",
       image:
         e.image.url ||
         "https://img.freepik.com/premium-photo/cute-confused-little-dog-with-question-marks_488220-4972.jpg?w=2000",
-      temperaments: e.temperament || "Temperaments not found",
+      temperaments: e.temperament || "Not found",
     };
   });
   return apiDogs;
@@ -43,7 +43,7 @@ const getDogsDb = async () => {
         height_max: d.dataValues.height_max,
         weight_min: d.dataValues.weight_min,
         weight_max: d.dataValues.weight_max,
-        temperaments: d.dataValues.temperaments.map((t) => t.dataValues.name),
+        temperaments: d.dataValues.temperaments.map((t) => t.dataValues.name).join(", "),
         years_life: d.dataValues.years_life,
         image: d.dataValues.image,
       };

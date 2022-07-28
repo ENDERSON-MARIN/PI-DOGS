@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Style from "./DogCard.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { addDogFavorites } from "../../redux/actions/index";
 
@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 //--HOME CARDS
 const DogCard = ({ id, name, weight_min, weight_max, image, temperaments }) => {
   const dispatch = useDispatch();
+const dogsFavorites = useSelector(state => state.dogsFavorites);
 
   //--ADD DOGS TO FAVORITES
   const handleAddFavorites = () => {
@@ -44,9 +45,9 @@ const DogCard = ({ id, name, weight_min, weight_max, image, temperaments }) => {
             </h3>
           </Link>
 
-          <button
+          <button className={Style.cardLike}
             onClick={handleAddFavorites}
-            //disabled={videogamesFavorites.find((v) => v.id === videogames.id)}
+            disabled={dogsFavorites.find((v) => v.id === id)}
           >
             💖
           </button>

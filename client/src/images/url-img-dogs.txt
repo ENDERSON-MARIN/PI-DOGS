@@ -1,0 +1,4 @@
+LASSIE = https://wallpapercave.com/wp/wp3823545.jpg
+SCOOBY DOO = https://rare-gallery.com/mocahbig/75749-Scooby-Doo-DoughnutScoob-4k-Ultra-HD-Wallpaper.jpg
+PLUTO = https://images7.alphacoders.com/453/453345.jpg
+GOOFY = https://images8.alphacoders.com/448/448849.jpg

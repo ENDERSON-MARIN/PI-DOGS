@@ -64,14 +64,6 @@
   background-color: #1db954;
 }
 
-/* ==================MEDIA QUERIES (MEDIUM DEVICES)======================== */
-
-@media screen and (min-width: 1289px) {
-  /* .contentWrapper {
-    grid-template-columns: repeat(auto-fit, 23rem);
-    margin-left: 100px;
-  } */
-}
 /* ==================MEDIA QUERIES (SMALL DEVICES)======================== */
 
 @media screen and (max-width: 600px) {
