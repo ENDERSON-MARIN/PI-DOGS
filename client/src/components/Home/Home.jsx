@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import Style from "./Home.module.css";
 import NavBar from "../NavBar/NavBar";
 import DogCard from "../DogCard/DogCard";
@@ -21,7 +22,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const allDogs = useSelector((state) => state.dogs);
   const allTemperaments = useSelector((state) => state.temperaments);
-  const [/* status */, setStatus] = useState("All");
+  const [, /* status */ setStatus] = useState("All");
   const [loader, setLoader] = useState(true);
 
   //Paginated section
@@ -142,6 +143,9 @@ const Home = () => {
               </div>
             </div>
             <div className={Style.reloadBtnContainer}>
+              <NavLink to="/dogsCreate">
+                <button className={Style.reloadBtn}>Create Dog!</button>
+              </NavLink>
               <button
                 data-text="Reload"
                 className={Style.reloadBtn}
@@ -151,7 +155,11 @@ const Home = () => {
                   &nbsp;Reset Dogs&nbsp;
                 </span>
               </button>
+              <NavLink to="/dogsFavorites">
+                <button className={Style.reloadBtn}>Favorites Dogs!</button>
+              </NavLink>
             </div>
+
             <section className={Style.contentWrapper}>
               {currentDogs.length > 0 && !loader ? (
                 currentDogs.map((d) => {

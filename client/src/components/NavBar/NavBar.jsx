@@ -32,25 +32,15 @@ const NavBar = ({ onSearch }) => {
     <>
       <nav className={Style.navbar}>
         <ul>
-          <li className={Style.title}>DOGS PI</li>
-
           <form className={Style.searchIcon} onSubmit={handleSubmit}>
             <input
               className={Style.searchInput}
-              onChange={handleSearchValue}//se va cambiando el valor en el estado local
+              onChange={handleSearchValue} //se va cambiando el valor en el estado local
               value={value}
               type="search"
               placeholder="Search Dogs by name..."
             />
           </form>
-
-          <div className={Style.items}>
-            <li>
-              <NavLink to="/dogsCreate" className={Style.penLink}>
-                <button className={Style.btnCreate}>Create Dog!</button>
-              </NavLink>
-            </li>
-          </div>
         </ul>
       </nav>
     </>
