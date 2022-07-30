@@ -41,7 +41,7 @@
   cursor: pointer;
   border-top-left-radius: 70px;
   border-bottom-left-radius: 70px;
-  background-color: var(--color-bg-variant);
+  background-color: var(--color-bg);
   border: none;
   font-family: "Sansita Swashed";
 }
@@ -63,7 +63,7 @@
   cursor: pointer;
   border-top-right-radius: 70px;
   border-bottom-right-radius: 70px;
-  background-color: var(--color-bg-variant);
+  background-color: var(--color-bg);
   border: none;
   font-family: "Sansita Swashed";
 }

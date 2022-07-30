@@ -24,7 +24,7 @@
   border: none;
   border-radius: 5px;
   font-size: 15px;
-  box-shadow: 0 5px 15px rgba(225, 0, 255, 0.687);
+  box-shadow: 0 5px 15px rgb(29, 185, 84, 0.687);
   -webkit-appearance: button;
   appearance: button;
   outline: none;
@@ -44,25 +44,24 @@
   justify-content: space-evenly;
 }
 
+/*   box-shadow: 0 5px 15px rgba(77, 181, 255, 0.687); */
+
 .reloadBtn {
   padding: 10px;
-  background-color: #340034;
+  background-color: var(--color-black);
   border-radius: 10px;
-  color: #fff;
+  color: var(--color-white);
   text-decoration: none;
   font-weight: bolder;
-  box-shadow: 0 0 1em 0.25em rgb(217, 176, 255),
-    0 0 4em 1em rgba(191, 123, 255, 0.781),
-    inset 0 0 0.75em 0.25em rgb(217, 176, 255);
-  text-shadow: 0 0 0.5em rgb(217, 176, 255);
+  text-shadow: 0 0 0.5em rgb(29, 185, 84);
   transition: all 0.2s;
   margin-top: 10px;
-
 }
 
 .reloadBtn:hover {
   cursor: pointer;
-  background-color: #1db954;
+  background-color: var(--color-primary);
+  color: var(--color-black);
 }
 
 /* ==================MEDIA QUERIES (SMALL DEVICES)======================== */

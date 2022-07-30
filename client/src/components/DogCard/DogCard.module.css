@@ -54,7 +54,7 @@
 }
 .temperaments {
   font-size: 0.8rem;
-  color: var(--color-primary);
+  color: var(--color-pagination);
 }
 
 /* ==================MEDIA QUERIES (MEDIUM DEVICES)======================== */

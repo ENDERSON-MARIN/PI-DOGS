@@ -12,11 +12,11 @@
 
 :root {
   /* COLORES DE LA APP */
-  --color-bg: #420042;
+  --color-bg: #00608A;
   --color-bg-variant: #2c2c6c;
   --color-primary: #4db5ff;
   --color-primary-variant: rgba(77, 181, 255, 0.4);
-  --color-pagination: #1db954;
+  --color-pagination: rgb(29, 185, 84);
   --color-white: #fff;
   --color-black: #000000;
   --color-light:  rgb(128, 128, 128);
@@ -35,7 +35,8 @@ html {
 
 body {
   font-family: "Sansita Swashed", cursive;
-  background: var(--color-bg);
+  /* background: var(--color-bg); */
+  background-image: url("../src/images/grama.jpg");
   color: var(--color-white);
   line-height: 1.7;
 }
