@@ -132,10 +132,10 @@ export function getDogsByTemperaments() {
 }
 
 /* FILTER DOGS BY TEMPERAMENTS */
-export function filterDogsByTemperaments(payload) {
+export function filterDogsByTemperaments(temperaments) {
   return {
     type: FILTER_BY_TEMPERAMENTS,
-    payload,
+    payload:temperaments,
   };
 }
 

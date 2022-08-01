@@ -172,6 +172,7 @@ const Home = () => {
                       weight_min={d.weight_min}
                       weight_max={d.weight_max}
                       temperaments={d.temperaments}
+                      years_life={d.years_life}
                     />
                   );
                 })
