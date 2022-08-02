@@ -37,7 +37,6 @@ export const DogDetailImg = styled.img`
 
 export const DogDetailTemperaments = styled.p`
   color: var(--color-primary);
-  font-size: 15px;
   text-align: center;
   font-weight: 400;
   width: 100%;
