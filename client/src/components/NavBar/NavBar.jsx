@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Style from "./NavBar.module.css";
-import { NavLink } from "react-router-dom";
 
 import Swal from "sweetalert2";
 
