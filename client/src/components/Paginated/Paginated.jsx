@@ -12,8 +12,8 @@ export default function Paginated({ pageFunction, data, current }) {
   const arrayPaginated = [];
   const max = Math.ceil(allDogs.length / data);
 
-  for (let n = 1; n <= max; n++) {
-    arrayPaginated.push(n);
+  for (let i = 1; i <= max; i++) {
+    arrayPaginated.push(i);
   }
 
   const movePages = (page) => {

@@ -36,7 +36,7 @@ export const DogDetailImg = styled.img`
 `;
 
 export const DogDetailTemperaments = styled.p`
-  color: var(--color-primary);
+  color: var(--color-white);
   text-align: center;
   font-weight: 400;
   width: 100%;
@@ -66,7 +66,7 @@ export const DogDetailOthers = styled.p`
   padding: 10px;
   margin: 5px;
   border-radius: 15px;
-  color: var(--color-black);
+  color: var(--color-white);
   background-color: var(--color-primary);
 `;
 

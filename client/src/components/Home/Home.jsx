@@ -45,7 +45,7 @@ const Home = () => {
   const handleFilterExistence = (e) => {
     e.preventDefault();
     setStatus(e.target.value);
-    dispatch(filterDogsByExistence(e.target.value));
+    dispatch(filterDogsByExistence(e.target.value))//le paso la existencia =>ALL, API, DB
     setCurrentPage(1);
   };
 
@@ -53,7 +53,7 @@ const Home = () => {
   const handleOrderByAlphabetical = (e) => {
     e.preventDefault();
     setStatus(e.target.value);
-    dispatch(orderDogsByAlphabetical(e.target.value));
+    dispatch(orderDogsByAlphabetical(e.target.value));//le paso el order => A-Z, Z-A
     setCurrentPage(1);
   };
 
@@ -61,13 +61,13 @@ const Home = () => {
   const handleOrderByWeight = (e) => {
     e.preventDefault();
     setStatus(e.target.value);
-    dispatch(orderDogsByWeight(e.target.value));
+    dispatch(orderDogsByWeight(e.target.value));//le paso el peso => MIN, MAX
     setCurrentPage(1);
   };
   //--FILTER BY TEMPERAMENTS (search by temperaments)
   const handleFilterTemperaments = (e) => {
     e.preventDefault();
-    dispatch(filterDogsByTemperaments(e.target.value));
+    dispatch(filterDogsByTemperaments(e.target.value));// le paso el temperamento a la accion
     setCurrentPage(1);
   };
 

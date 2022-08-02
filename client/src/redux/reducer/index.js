@@ -95,15 +95,8 @@ function rootReducer(state = initialState, { type, payload }) {
       const filterTemp =
         payload === "All"
           ? allDogs
-          : allDogs.filter((e) => {
-              if (typeof e.temperaments === "string") {
-                return e.temperaments.includes(payload);
-              }
-              if (Array.isArray(e.temperaments)) {
-                let temps = e.temperaments.map((e) => e.name);
-                return temps.includes(payload);
-              }
-              return true;
+          : allDogs.filter((d) => {
+              return d.temperaments.includes(payload);
             });
       return {
         ...state,

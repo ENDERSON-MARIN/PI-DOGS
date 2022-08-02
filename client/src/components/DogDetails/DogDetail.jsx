@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import Style from "./DogDetail.module.css";
 
-import { deleteDog, getDogById } from "../../redux/actions/index"
+import { deleteDog, getDogById } from "../../redux/actions/index";
 
 import CardDetail from "./CardDetail.jsx";
+import Loader from "../Loader/Loader.jsx";
 
 import Swal from "sweetalert2";
 
@@ -39,7 +40,7 @@ const DogDetail = () => {
     });
   };
 
-  //console.log(dogDetails);
+  // console.log(dogDetails);
 
   return (
     <div>
@@ -63,10 +64,9 @@ const DogDetail = () => {
           </button>
         )}
       </div>
-
-      <div className={Style.container}>
-        <CardDetail dog={dogDetails} />
-      </div>
+      <section className={Style.container}>
+        {dogDetails ? <CardDetail dog={dogDetails} /> : <Loader />}
+      </section>
     </div>
   );
 };
