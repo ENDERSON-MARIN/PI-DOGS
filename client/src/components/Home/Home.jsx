@@ -45,7 +45,7 @@ const Home = () => {
   const handleFilterExistence = (e) => {
     e.preventDefault();
     setStatus(e.target.value);
-    dispatch(filterDogsByExistence(e.target.value))//le paso la existencia =>ALL, API, DB
+    dispatch(filterDogsByExistence(e.target.value)); //le paso la existencia =>ALL, API, DB
     setCurrentPage(1);
   };
 
@@ -53,7 +53,7 @@ const Home = () => {
   const handleOrderByAlphabetical = (e) => {
     e.preventDefault();
     setStatus(e.target.value);
-    dispatch(orderDogsByAlphabetical(e.target.value));//le paso el order => A-Z, Z-A
+    dispatch(orderDogsByAlphabetical(e.target.value)); //le paso el order => A-Z, Z-A
     setCurrentPage(1);
   };
 
@@ -61,13 +61,13 @@ const Home = () => {
   const handleOrderByWeight = (e) => {
     e.preventDefault();
     setStatus(e.target.value);
-    dispatch(orderDogsByWeight(e.target.value));//le paso el peso => MIN, MAX
+    dispatch(orderDogsByWeight(e.target.value)); //le paso el peso => MIN, MAX
     setCurrentPage(1);
   };
   //--FILTER BY TEMPERAMENTS (search by temperaments)
   const handleFilterTemperaments = (e) => {
     e.preventDefault();
-    dispatch(filterDogsByTemperaments(e.target.value));// le paso el temperamento a la accion
+    dispatch(filterDogsByTemperaments(e.target.value)); // le paso el temperamento a la accion
     setCurrentPage(1);
   };
 
@@ -143,7 +143,7 @@ const Home = () => {
               </div>
             </div>
             <div className={Style.reloadBtnContainer}>
-              <NavLink to="/dogsCreate">
+              <NavLink to="/dogCreate">
                 <button className={Style.reloadBtn}>Create Dog!</button>
               </NavLink>
               <button
@@ -152,7 +152,7 @@ const Home = () => {
                 onClick={handleReloadBtn}
               >
                 <span className={Style.hoverText} aria-hidden="true">
-                  &nbsp;Reset Dogs&nbsp;
+                  &nbsp;Clear Filters&nbsp;
                 </span>
               </button>
               <NavLink to="/dogsFavorites">
