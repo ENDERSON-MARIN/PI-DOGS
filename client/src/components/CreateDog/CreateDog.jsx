@@ -325,7 +325,7 @@ function Form() {
         {/* ---- INPUT IMAGE ---- */}
         <div>
           <label>Image</label>
-          <div className="div_input">
+          <div className="max">
           <div
               className={errors.image ? "div_input error" : "div_input"}
             >
