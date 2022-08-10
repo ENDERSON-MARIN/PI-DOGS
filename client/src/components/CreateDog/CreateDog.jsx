@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createDog } from "../../redux/actions/index";
 import { getDogsByTemperaments } from "../../redux/actions/index";
 import "./CreateDog.css";
+
+import Swal from "sweetalert2";
 
 function validateForm(inputs) {
   let errors = {};
@@ -67,18 +70,23 @@ function validateForm(inputs) {
   } else if (parseInt(inputs.years_life.length) >= 30) {
     errors.years_life = "must contain less than 30 characters";
   }
+  /* INPUT TEMPERAMENTS*/
+  if (!inputs.temperaments) {
+    errors.temperaments = "You must select at least 1 temperament!";
+  }
 
   return errors;
 }
 
 function Form() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getDogsByTemperaments());
   }, [dispatch]);
 
-  const temperamentos = useSelector((state) => state.temperaments);
+  const allTemperaments = useSelector((state) => state.temperaments);
 
   const [errors, setErrors] = useState({});
 
@@ -90,12 +98,12 @@ function Form() {
     weight_max: "",
     image: "",
     years_life: "",
-    temperament: [],
+    temperaments: [],
   });
 
   const [selectTemperaments, setSelectTemperaments] = useState([]);
 
-  // console.log("inputs form :",inputs.temperament)
+  // console.log("inputs Select :",inputs.temperaments)
 
   function handleChange(e) {
     setInputs({
@@ -111,19 +119,23 @@ function Form() {
   }
 
   function handleSelect(e) {
-    if (inputs.temperament.includes(e.target.value)) return;
+    //console.log(e.target.value);
+    if (inputs.temperaments.includes(e.target.value)) return;
 
     setInputs({
       ...inputs,
-      temperament: [...inputs.temperament, e.target.value],
+      temperaments: [...inputs.temperaments, e.target.value],
     });
 
-    const selectName = e.target.value;
-    if (selectName === "default") return;
-    setInputs({ ...inputs, temperament: [...inputs.temperament, selectName] });
+    const temperamentsName = e.target.value;
+  
+    setInputs({
+      ...inputs,
+      temperaments: [...inputs.temperaments, temperamentsName],
+    });
     setSelectTemperaments([
       ...selectTemperaments,
-      temperamentos.find((e) => e.id === parseInt(selectName)),
+      allTemperaments.find((e) => e.id === parseInt(temperamentsName)),
     ]);
   }
 
@@ -131,24 +143,39 @@ function Form() {
     e.preventDefault();
     if (
       !errors.name &&
+      !errors.image &&
       !errors.height_min &&
       !errors.height_max &&
       !errors.weight_min &&
-      !errors.weight_max
+      !errors.weight_min &&
+      !errors.years_life &&
+      !errors.temperaments
     ) {
       try {
-        dispatch(createDog(inputs));
-        setInputs({
-          name: "",
-          height_min: "",
-          height_max: "",
-          weight_min: "",
-          weight_max: "",
-          image: "",
-          years_life: "",
-          temperament: [],
-        });
-        setSelectTemperaments([]);
+        if (inputs.name) {
+          dispatch(createDog(inputs));
+          Swal.fire({
+            title: "Created!",
+            text: "Dog created successfully!",
+            icon: "success",
+            confirmButtonText: "Ok",
+            confirmButtonColor: "green",
+            timer: "3000",
+          });
+          setInputs({
+            name: "",
+            height_min: "",
+            height_max: "",
+            weight_min: "",
+            weight_max: "",
+            image: "",
+            years_life: "",
+            temperaments: [],
+          });
+          setSelectTemperaments([]);
+          document.getElementById("form").reset();
+          navigate("/home");
+        }
       } catch (error) {
         console.log(error);
       }
@@ -158,7 +185,7 @@ function Form() {
   function handleDelete(e) {
     setInputs({
       ...inputs,
-      temperament: inputs.temperament.filter((t) => t !== e.target.value),
+      temperaments: inputs.temperaments.filter((t) => t !== e.target.value),
     });
     setSelectTemperaments(
       selectTemperaments.filter((t) => t.id !== parseInt(e.target.value))
@@ -167,16 +194,14 @@ function Form() {
 
   return (
     <div className="Form_container">
-      <h2 className="form_title">
-        AGREGA LOS DATOS DE TU <span className="form_title_naranja">PERRO</span>
-      </h2>
-      <p className="datos_obligatorios">Datos con * obligatorios</p>
+      <h2 className="form_title">CREATE NEW DOG</h2>
+      <p className="datos_obligatorios">Fields with * obligatories</p>
 
-      <form className="form" action="" onSubmit={handleSubmit}>
+      <form id="form" className="form" action="" onSubmit={handleSubmit}>
         {/* ---- INPUT NAME ---- */}
         <div>
           <div>
-            <label>Nombre *</label>
+            <label>Name *</label>
             <div className={errors.name ? "div_input error" : "div_input"}>
               <input
                 className="form_input"
@@ -192,10 +217,118 @@ function Form() {
           </div>
         </div>
 
+        {/* ---- INPUT HEIGHT ---- */}
+        <div className="div_inputs_dobles">
+          <div className="max">
+            <label>Height Max *</label>
+            <div
+              className={errors.height_max ? "div_input error" : "div_input"}
+            >
+              <input
+                className="form_input min"
+                placeholder="Height Max"
+                onChange={handleChange}
+                name="height_max"
+                value={inputs.height_max}
+              />
+              <span className="unidad">cm</span>
+            </div>
+            {errors.height_max && (
+              <span className="dato_incorrecto">{errors.height_max}</span>
+            )}
+          </div>
+
+          <div className="min">
+            <label>Height Min *</label>
+            <label className="label_min">Peso</label>
+            <div
+              className={errors.height_min ? "div_input error" : "div_input"}
+            >
+              <input
+                className="form_input max"
+                placeholder="Height Min"
+                onChange={handleChange}
+                name="height_min"
+                value={inputs.height_min}
+              />
+              <span className="unidad">cm</span>
+            </div>
+            {errors.height_min && (
+              <span className="dato_incorrecto">{errors.height_min}</span>
+            )}
+          </div>
+        </div>
+
+        {/* ---- INPUT WEIGHT ---- */}
+        <div className="div_inputs_dobles">
+          <div className="max">
+            <label>Weight Max *</label>
+            <div
+              className={errors.weight_max ? "div_input error" : "div_input"}
+            >
+              <input
+                className="form_input min"
+                placeholder="Weight Max"
+                onChange={handleChange}
+                name="weight_max"
+                value={inputs.weight_max}
+              />
+              <span className="unidad">kg</span>
+            </div>
+            {errors.weight_max && (
+              <span className="dato_incorrecto">{errors.weight_max}</span>
+            )}
+          </div>
+
+          <div className="min">
+            <label>Weight Min *</label>
+            <div
+              className={errors.weight_min ? "div_input error" : "div_input"}
+            >
+              <input
+                className="form_input max"
+                placeholder="Weight Min"
+                onChange={handleChange}
+                name="weight_min"
+                value={inputs.weight_min}
+              />
+              <span className="unidad">kg</span>
+            </div>
+            {errors.weight_min && (
+              <span className="dato_incorrecto">{errors.weight_min}</span>
+            )}
+          </div>
+        </div>
+
+        {/* ---- INPUT YEARS LIFE ---- */}
+        <div>
+          <div className="max">
+            <label>Years Life *</label>
+            <div
+              className={errors.years_life ? "div_input error" : "div_input"}
+            >
+              <input
+                className="form_input min_years"
+                placeholder="Years Life"
+                onChange={handleChange}
+                name="years_life"
+                value={inputs.years_life}
+              />
+              <span className="unidad">Years</span>
+            </div>
+            {errors.years_life && (
+              <span className="dato_incorrecto">{errors.years_life}</span>
+            )}
+          </div>
+        </div>
+
         {/* ---- INPUT IMAGE ---- */}
         <div>
-          <label>Imagen</label>
+          <label>Image</label>
           <div className="div_input">
+          <div
+              className={errors.image ? "div_input error" : "div_input"}
+            >
             <input
               className="form_input"
               placeholder="Image URL"
@@ -208,121 +341,21 @@ function Form() {
             <span className="dato_incorrecto">{errors.image}</span>
           )}
         </div>
-
-        {/* ---- INPUT HEIGHT ---- */}
-        <div className="div_inputs_dobles">
-          <div className="max">
-            <label>Altura *</label>
-            <div
-              className={errors.height_max ? "div_input error" : "div_input"}
-            >
-              <input
-                className="form_input min"
-                placeholder="Max"
-                onChange={handleChange}
-                name="height_max"
-                value={inputs.height_max}
-              />
-              <span className="unidad">CM</span>
-            </div>
-            {errors.height_max && (
-              <span className="dato_incorrecto">{errors.height_max}</span>
-            )}
-          </div>
-
-          <div className="min">
-            <label className="label_min">Peso</label>
-            <div
-              className={errors.height_min ? "div_input error" : "div_input"}
-            >
-              <input
-                className="form_input max"
-                placeholder="Min"
-                onChange={handleChange}
-                name="height_min"
-                value={inputs.height_min}
-              />
-              <span className="unidad">CM</span>
-            </div>
-            {errors.height_min && (
-              <span className="dato_incorrecto">{errors.height_min}</span>
-            )}
-          </div>
-        </div>
-
-        {/* ---- INPUT WEIGHT ---- */}
-        <div className="div_inputs_dobles">
-          <div className="max">
-            <label>Peso *</label>
-            <div
-              className={errors.weight_max ? "div_input error" : "div_input"}
-            >
-              <input
-                className="form_input min"
-                placeholder="Max"
-                onChange={handleChange}
-                name="weight_max"
-                value={inputs.weight_max}
-              />
-              <span className="unidad">KG</span>
-            </div>
-            {errors.weight_max && (
-              <span className="dato_incorrecto">{errors.weight_max}</span>
-            )}
-          </div>
-
-          <div className="min">
-            <label className="label_min">Peso</label>
-            <div
-              className={errors.weight_min ? "div_input error" : "div_input"}
-            >
-              <input
-                className="form_input max"
-                placeholder="Min"
-                onChange={handleChange}
-                name="weight_min"
-                value={inputs.weight_min}
-              />
-              <span className="unidad">KG</span>
-            </div>
-            {errors.weight_min && (
-              <span className="dato_incorrecto">{errors.weight_min}</span>
-            )}
-          </div>
-        </div>
-
-        {/* ---- INPUT YEARS LIFE ---- */}
-        <div className="div_inputs_dobles">
-          <div className="max">
-            <label>Años de vida</label>
-            <div
-              className={errors.years_life ? "div_input error" : "div_input"}
-            >
-              <input
-                className="form_input min_years"
-                placeholder="Years Life"
-                onChange={handleChange}
-                name="years_life"
-                value={inputs.years_life}
-              />
-              <span className="unidad">Años</span>
-            </div>
-            {errors.years_life && (
-              <span className="dato_incorrecto">{errors.years_life}</span>
-            )}
-          </div>
         </div>
 
         {/* ---- INPUT TEMPERAMENTS ---- */}
         <div>
-          <label>Temperamentos</label>
+          <label>Temperaments</label>
+          <div
+              className={errors.temperaments ? "div_input error" : "div_input"}
+            >
           <div className="div_input">
             <select
               className="select_form"
-              name="temperamentos"
+              name="temperaments"
               onChange={handleSelect}
             >
-              {temperamentos.map((t, i) => {
+              {allTemperaments.map((t, i) => {
                 return (
                   <option className="option_form" key={i} value={t.id}>
                     {t.name}
@@ -330,6 +363,7 @@ function Form() {
                 );
               })}
             </select>
+          </div>
           </div>
           <div className="div_form_final_temps">
             <ul className="ul_temp">
@@ -350,12 +384,26 @@ function Form() {
               })}
             </ul>
           </div>
+          {errors.temperaments && (
+            <span className="dato_incorrecto">{errors.temperaments}</span>
+          )}
         </div>
 
-        <input className="submit"
-        type="submit" value="Create new Dog"
-        disabled={errors.name || errors.height_min || errors.height_max || errors.weight_min || errors.weight_max}
-         />
+        <input
+          className="submit"
+          type="submit"
+          value="Submit Form"
+          disabled={
+            errors.name ||
+            errors.image ||
+            errors.height_min ||
+            errors.height_max ||
+            errors.weight_min ||
+            errors.weight_max ||
+            errors.years_life ||
+            errors.temperaments
+          }
+        />
       </form>
     </div>
   );

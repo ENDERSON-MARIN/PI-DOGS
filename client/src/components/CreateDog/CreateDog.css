@@ -1,48 +1,45 @@
 .Form_container {
-  max-width: 526px;
+  max-width: 550px;
   border-radius: 10px;
   box-shadow: 0px 4px 22px 0px #0000001a;
-  padding: 40px;
-  margin: 0 auto;
+  padding: 30px;
+  margin: 10px auto;
+  background-color: azure;
 }
 .form_title {
-  font-size: 18px;
+  font-size: 25px;
   font-weight: 700;
-  color: #00608A;
+  color: var(--color-bg);
 }
-.form_title_naranja {
-  color: var(--naranja);
-}
+
 .datos_obligatorios {
-  margin-top: 10px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #00608A;
+  font-size: 12px;
+  font-weight: 700;
+  color: red;
 }
 .form {
   display: flex;
   flex-direction: column;
   gap: 31px;
-  margin-top: 50px;
 }
 label {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--gris-claro);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-black);
 }
 .div_input {
   display: flex;
   align-items: center;
   width: 100%;
   border-radius: 10px;
-  background-color: var(--color-primary);
+  background-color: var(--color-white);
   padding: 6px 6px;
   height: 50px;
   margin-top: 10px;
   border: 2px solid transparent;
 }
 .div_input.error {
-  border: 2px solid rgba(255, 0, 0, 0.28);
+  border: 2px solid rgba(255, 0, 0, 0.5);
 }
 
 .div_inputs_dobles {
@@ -53,9 +50,9 @@ label {
 .unidad {
   font-weight: 700;
   font-size: 14px;
-  border-left: 1px solid var(--gris-placeholder);
+  border-left: 1px solid var(--color-light);
   padding: 15px 2px 15px 5px;
-  color: var(--gris-claro);
+  color: rgb(128, 128, 128, 0.5);
 }
 .label_min {
   opacity: 0;
@@ -64,19 +61,15 @@ label {
 .form_input.max {
   max-width: 165px;
 }
-.form_input.min_years,
-.form_input.max_years {
-  max-width: 149px;
-}
+
 .form_input {
   border: none;
-  background-color: var(--gris-search-bar);
   height: 100%;
   border-radius: 10px;
   font-size: 16px;
   font-weight: 700;
   padding: 4px 9px;
-  color: #00608A;
+  color: var(--color-bg);
   letter-spacing: 0.6px;
   width: 100%;
 }
@@ -84,10 +77,10 @@ label {
   outline: none;
 }
 .form_input::placeholder {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0px;
-  color: var(--gris-placeholder);
+  color: rgb(128, 128, 128, 0.5);
 }
 .ul_temp {
   display: flex;
@@ -97,22 +90,23 @@ label {
   margin-top: 20px;
   font-size: 14px;
   font-weight: 500;
-  color: var(--naranja);
+  color: var(--color-primary);
 }
 .li_temp {
   display: flex;
   gap: 5px;
-  border: 1px solid var(--naranja);
   padding: 4px;
   border-radius: 4px;
+  /* border: 1px solid var(--color-primary); */
+  background-color: var(--color-primary);
+  color: var(--color-black);
 }
 
 .select_form {
-  background-color: var(--gris-search-bar);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.5px;
-  color: var(--gris-claro);
+  color: var(--color-light);
   width: 100%;
   padding: 5px 0;
   border: none;
@@ -125,24 +119,24 @@ label {
 .submit {
   width: 100%;
   border: none;
-  color: var(--blanco);
+  color: var(--color-white);
   font-size: 26px;
   font-weight: 700;
   padding: 10px 0;
   border-radius: 8px;
-  background-color: var(--naranja);
+  background-color: var(--color-primary);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 .submit:hover {
-  background-color: var(--naranja-hover);
+  background-color: var(--color-pagination);
 }
 .submit:focus {
   outline: none;
 }
 .submitNot {
-  background-color: #8b4d2a;
-  color: rgb(150, 150, 150);
+  background-color: red;
+  color: var(--color-black);
   cursor: not-allowed;
 }
 .dato_incorrecto {
@@ -153,11 +147,12 @@ label {
 }
 .div_form_final_temps {
   max-width: 500px;
+  max-height: 300px;
 }
 .delete_temp {
   border: none;
-  color: #00608A;
-  background-color: var(--blanco);
+  background-color: var(--color-primary);
+  color: red;
   cursor: pointer;
 }
 
@@ -195,7 +190,7 @@ label {
   .li_temp {
     display: flex;
     gap: 5px;
-    border: 1px solid var(--naranja);
+    border: 1px solid var(--color-primary);
     padding: 4px;
     border-radius: 4px;
   }
@@ -217,8 +212,8 @@ label {
   }
   .delete_temp {
     border: none;
-    color: #00608A;
-    background-color: var(--blanco);
+    background-color: var(--color-primary);
+    color: red;
     cursor: pointer;
   }
 }

@@ -76,7 +76,7 @@ const createDog = async (req, res, next) => {
     /* BUSCO DENTRO DEL MODELO DE TEMPERAMENTOS CUYOS NOMBRES COINCIDAN CON LOS QUE ME PASA EL CLIENTE */
     let temperamentsInDb = await Temperament.findAll({
       where: {
-        name: {
+        id: {
           [Op.in]: temperaments,
         },
       },
