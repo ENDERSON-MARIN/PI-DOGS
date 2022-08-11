@@ -23,16 +23,26 @@ const DogDetail = () => {
 
   const handleDelete = () => {
     Swal.fire({
-      title: "Do you want to delete the Dog?",
-      showDenyButton: true,
-      confirmButtonText: "Yes",
+      title: `Are you sure delete this Dog?`,
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
       confirmButtonColor: "green",
-      denyButtonText: "Cancel",
-      // timer: "3000",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(deleteDog(id));
-        Swal.fire("Dog successfully removed!", "", "success");
+        Swal.fire({
+          icon: "success",
+          title: "Deleted!",
+          text: "Dog deleted successfully!!",
+          confirmButtonColor: "green",
+          confirmButtonText: "Ok!",
+          showCancelButton: false,
+          cancelButtonColor: "#d33",
+          timer: 3000,
+        });
         navigate("/home");
       } else if (result.isDenied) {
         //Swal.fire("Changes are not saved", "", "info");
