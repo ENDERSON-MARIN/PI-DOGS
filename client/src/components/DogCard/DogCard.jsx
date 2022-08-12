@@ -26,6 +26,8 @@ const DogCard = ({
       addDogFavorites({
         id: id,
         name: name,
+        weight_min,
+        weight_max,
         image: image,
         years_life: years_life,
         temperaments: temperaments,
