@@ -127,7 +127,7 @@ const updateDog = async (req, res, next) => {
     /* BUSCO DENTRO DEL MODELO DE TEMPERAMENTS LOS QUE COINCIDAN CON LOS QUE RECIBO DEL BODY */
     let temperamentsDb = await Temperament.findAll({
       where: {
-        name: {
+        id: {
           [Op.in]: temperaments,
         },
       },
