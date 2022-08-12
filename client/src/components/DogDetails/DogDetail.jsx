@@ -19,6 +19,9 @@ const DogDetail = () => {
   useEffect(() => {
     dispatch(getDogById(id));
     // console.log(id);
+    return () => {
+      getDogById();
+    };
   }, [dispatch, id]);
 
   const handleDelete = () => {

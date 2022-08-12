@@ -156,7 +156,7 @@ const Home = () => {
                 </span>
               </button>
               <NavLink to="/dogsFavorites">
-                <button className={Style.reloadBtn}>Favorites Dogs!</button>
+                <button className={Style.reloadBtn}>Favorite Dogs!</button>
               </NavLink>
             </div>
 
