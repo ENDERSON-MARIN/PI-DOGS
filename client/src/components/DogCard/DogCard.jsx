@@ -8,15 +8,7 @@ import { addDogFavorites } from "../../redux/actions/index";
 import Swal from "sweetalert2";
 
 //--HOME CARDS
-const DogCard = ({
-  id,
-  name,
-  weight_min,
-  weight_max,
-  image,
-  temperaments,
-  years_life,
-}) => {
+const DogCard = ({ id, name, weight_min, weight_max, image, temperaments }) => {
   const dispatch = useDispatch();
   const dogsFavorites = useSelector((state) => state.dogsFavorites);
 
@@ -24,13 +16,12 @@ const DogCard = ({
   const handleAddFavorites = () => {
     dispatch(
       addDogFavorites({
-        id: id,
-        name: name,
+        id,
+        name,
         weight_min,
         weight_max,
-        image: image,
-        years_life: years_life,
-        temperaments: temperaments,
+        image,
+        temperaments,
       })
     );
     Swal.fire({
