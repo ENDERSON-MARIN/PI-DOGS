@@ -43,9 +43,9 @@ const getDogsDb = async () => {
         height_max: d.dataValues.height_max,
         weight_min: d.dataValues.weight_min,
         weight_max: d.dataValues.weight_max,
-        temperaments: d.dataValues.temperaments.map((t) => t.dataValues.name).join(", "),
         years_life: d.dataValues.years_life,
         image: d.dataValues.image,
+        temperaments: d.dataValues.temperaments.map((t) => t.dataValues.name).join(", "),
       };
     });
     return dogsWithTemperaments;

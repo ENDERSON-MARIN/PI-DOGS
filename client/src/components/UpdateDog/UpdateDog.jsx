@@ -151,7 +151,8 @@ function Form() {
       !errors.height_max &&
       !errors.weight_min &&
       !errors.weight_min &&
-      !errors.years_life
+      !errors.years_life &&
+      !errors.temperaments
     ) {
       try {
         if (data.name) {
@@ -400,7 +401,8 @@ function Form() {
             errors.height_max ||
             errors.weight_min ||
             errors.weight_max ||
-            errors.years_life
+            errors.years_life ||
+            errors.temperaments
           }
         />
       </form>
