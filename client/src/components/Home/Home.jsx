@@ -19,11 +19,11 @@ import {
 } from "../../redux/actions/index";
 
 const Home = () => {
-  const dispatch = useDispatch();
   const allDogs = useSelector((state) => state.dogs);
   const allTemperaments = useSelector((state) => state.temperaments);
   const [, /* status */ setStatus] = useState("All");
   const [loader, setLoader] = useState(true);
+  const dispatch = useDispatch();
 
   //Paginated section
   const [currentPage, setCurrentPage] = useState(1); //inicia pagina 1
