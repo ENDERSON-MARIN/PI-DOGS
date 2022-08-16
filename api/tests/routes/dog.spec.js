@@ -2,7 +2,7 @@
 const { expect } = require('chai');
 const session = require('supertest-session');
 const app = require('../../src/app.js');
-const { Dog, conn } = require('../../src/db.js');
+const { Dog, database } = require('../../src/db.js');
 
 const agent = session(app);
 const dog = {
@@ -10,12 +10,12 @@ const dog = {
 };
 
 describe('Dog routes', () => {
-  before(() => conn.authenticate()
+  before(() => database.authenticate()
   .catch((err) => {
     console.error('Unable to connect to the database:', err);
   }));
   beforeEach(() => Dog.sync({ force: true })
-    .then(() => Dog.create(dog)));
+    .then(() => Dog.get(dog)));
   describe('GET /dogs', () => {
     it('should get 200', () =>
       agent.get('/dogs').expect(200)
