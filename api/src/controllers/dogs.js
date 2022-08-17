@@ -2,24 +2,43 @@ const { Dog, Temperament } = require("../db");
 const { Op } = require("sequelize");
 const { getAllDogs, getDogsDb } = require("../controllers/index");
 
-/* GET ALL DOGS FROM DB-API OR BY NAME */
-const getAllDogsOrByName = async (req, res, next) => {
-  try {
-    const { name } = req.query;
-    const allDogs = await getAllDogs();
-    if (name) {
-      const dogsByName = allDogs.filter((dog) =>
-        dog.name.toLowerCase().includes(name.toLowerCase())
-      );
-      dogsByName.length
-        ? res.status(200).send(dogsByName)
-        : res.status(404).send(`Dog with name ${name} not exist!`);
-    } else {
-      res.status(200).send(allDogs);
-    }
-  } catch (error) {
-    next(error);
-  }
+/* GET ALL DOGS FROM DB-API OR BY NAME WITH ASYNC - AWAIT */
+// const getAllDogsOrByName = async (req, res, next) => {
+//   try {
+//     const { name } = req.query;
+//     const allDogs = await getAllDogs();
+//     if (name) {
+//       const dogsByName = allDogs.filter((dog) =>
+//         dog.name.toLowerCase().includes(name.toLowerCase())
+//       );
+//       dogsByName.length
+//         ? res.status(200).send(dogsByName)
+//         : res.status(404).send(`Dog with name ${name} not exist!`);
+//     } else {
+//       res.status(200).send(allDogs);
+//     }
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
+/* GET ALL DOGS OR BY NAME WITH PROMISES */
+const getAllDogsNamePromise = (req, res, next) => {
+  const { name } = req.query;
+  getAllDogs()
+    .then((allDogs) => {
+      if (name) {
+        const dogsFiltered = allDogs.filter((dogs) =>
+        dogs.name.toLowerCase().includes(name.toLowerCase())
+        );
+        dogsFiltered.length
+          ? res.status(200).send(dogsFiltered)
+          : res.status(404).send(`Dog with name ${name} not exist!`);
+      } else {
+        res.status(200).send(allDogs);
+      }
+    })
+    .catch((error) => next(error));
 };
 
 /* GET ONE DOG BY ID FROM DB OR API */
@@ -178,7 +197,7 @@ const deleteDog = async (req, res, next) => {
 // };
 
 module.exports = {
-  getAllDogsOrByName,
+  getAllDogsNamePromise,
   getAllDogsById,
   createDog,
   updateDog,

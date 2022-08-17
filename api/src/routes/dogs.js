@@ -30,7 +30,7 @@ const bodySchema = Joi.object({
 });
 
 const {
-  getAllDogsOrByName,
+  getAllDogsNamePromise,
   getAllDogsById,
   createDog,
   updateDog,
@@ -42,7 +42,7 @@ const router = Router();
 /* SE ARMAN LAS RUTAS PASANDO LAS VALIDACIONES COMO MIDDLEWARES */
 
 /* GET ALL DOGS OR BY NAME */
-router.get("/", validator.query(querySchema), getAllDogsOrByName);
+router.get("/", validator.query(querySchema), getAllDogsNamePromise);
 
 /* GET ALL DOGS BY ID */
 router.get("/:id", validator.params(paramsSchema), getAllDogsById);
