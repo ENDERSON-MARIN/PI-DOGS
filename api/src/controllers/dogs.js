@@ -161,6 +161,22 @@ const deleteDog = async (req, res, next) => {
   }
 };
 
+/* DELETE DOG IN THE DATABASE WITH PROMISES*/
+// const deleteDog = (req, res, next) => {
+//   const { id } = req.params;
+
+//   Dog.findByPk(id)
+//     .then((dogBd) => {
+//       if (dogBd === null) {
+//         return res.status(400).send("Dog not found!");
+//       } else {
+//         dogBd.destroy();
+//         return res.status(200).send("Dog Deleted Successfully! ");
+//       }
+//     })
+//     .catch((error) => next(error));
+// };
+
 module.exports = {
   getAllDogsOrByName,
   getAllDogsById,
