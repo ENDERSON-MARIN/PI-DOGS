@@ -10,7 +10,7 @@ export default function PaginatedFavorites({ pageFunction, data, current }) {
   const [minPageDisplayed, setMinPageDisplayed] = useState(0);
 
   const arrayPaginated = [];
-  const max = Math.ceil(allDogs.length / data);
+  const max = Math.ceil(allDogs?.length / data);
 
   for (let i = 1; i <= max; i++) {
     arrayPaginated.push(i);
