@@ -47,7 +47,7 @@ const DogsFavorites = () => {
             </div>
 
             <section className={Style.contentWrapper}>
-              {currentDogs.length > 0 && !loader ? (
+              {currentDogs?.length > 0 && !loader ? (
                 currentDogs.map((d) => {
                   return (
                     <DogCardFavorites
