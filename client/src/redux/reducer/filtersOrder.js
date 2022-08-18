@@ -44,3 +44,21 @@ export const orderByWeight = (weight, stateDogs) => {
       return stateDogs;
   }
 };
+export const orderByHeight = (height, stateDogs) => {
+  switch (height) {
+    case "Maximum":
+      return stateDogs.sort((a, b) => {
+        if (a.height_max > b.height_max) return -1;
+        if (b.height_max > a.height_max) return 1;
+        else return 0;
+      });
+    case "Minimum":
+      return stateDogs.sort((a, b) => {
+        if (a.height_min > b.height_min) return 1;
+        if (b.height_min > a.height_min) return -1;
+        else return 0;
+      });
+    default:
+      return stateDogs;
+  }
+};

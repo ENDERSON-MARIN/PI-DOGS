@@ -15,6 +15,7 @@ import {
   filterDogsByTemperaments,
   orderDogsByAlphabetical,
   orderDogsByWeight,
+  orderDogsByHeight,
   getDogsByName,
 } from "../../redux/actions/index";
 
@@ -62,6 +63,14 @@ const Home = () => {
     e.preventDefault();
     setStatus(e.target.value);
     dispatch(orderDogsByWeight(e.target.value)); //le paso el peso => MIN, MAX
+    setCurrentPage(1);
+  };
+
+  //--ORDER BY HEIGHT-->MINIMUM/MAXIMUM
+  const handleOrderByHeight = (e) => {
+    e.preventDefault();
+    setStatus(e.target.value);
+    dispatch(orderDogsByHeight(e.target.value)); //le paso el peso => MINIMUM, MAXIMUM
     setCurrentPage(1);
   };
   //--FILTER BY TEMPERAMENTS (search by temperaments)
@@ -140,6 +149,14 @@ const Home = () => {
                   <option value="Max">MAX⬆</option>
                   <option value="Min">MIN⬇</option>
                 </select>
+                <select onChange={handleOrderByHeight} defaultValue="Height">
+                  <option value="Height" disabled>
+                    {" "}
+                    ORDER BY HEIGHT{" "}
+                  </option>
+                  <option value="Maximum">MAX⬆</option>
+                  <option value="Minimum">MIN⬇</option>
+                </select>
               </div>
             </div>
             <div className={Style.reloadBtnContainer}>
@@ -171,6 +188,8 @@ const Home = () => {
                       image={d.image}
                       weight_min={d.weight_min}
                       weight_max={d.weight_max}
+                      height_min={d.height_min}
+                      height_max={d.height_max}
                       temperaments={d.temperaments}
                       years_life={d.years_life}
                     />

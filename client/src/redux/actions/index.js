@@ -13,6 +13,7 @@ import {
   FILTER_BY_EXISTENCE,
   ORDER_BY_ALPHABETICAL,
   ORDER_BY_WEIGHT,
+  ORDER_BY_HEIGHT,
   ADD_DOG_FAVORITES,
   REMOVE_DOG_FAVORITES,
   CLEAR_DOG_DETAILS,
@@ -160,6 +161,14 @@ export function orderDogsByWeight(weight) {
   return {
     type: ORDER_BY_WEIGHT,
     payload: weight,
+  };
+}
+
+/* ORDER DOGS BY HEIGHT */
+export function orderDogsByHeight(height) {
+  return {
+    type: ORDER_BY_HEIGHT,
+    payload: height,
   };
 }
 

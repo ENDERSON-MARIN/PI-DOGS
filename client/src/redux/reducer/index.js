@@ -11,6 +11,7 @@ import {
   FILTER_BY_EXISTENCE,
   ORDER_BY_ALPHABETICAL,
   ORDER_BY_WEIGHT,
+  ORDER_BY_HEIGHT,
   ADD_DOG_FAVORITES,
   REMOVE_DOG_FAVORITES,
   CLEAR_DOG_DETAILS,
@@ -21,6 +22,7 @@ import {
   filterByExistence,
   orderByAlphabetic,
   orderByWeight,
+  orderByHeight,
 } from "./filtersOrder";
 
 function getLocalData() {
@@ -117,6 +119,11 @@ function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         dogs: orderByWeight(payload, state.dogsCopy),
+      };
+    case ORDER_BY_HEIGHT:
+      return {
+        ...state,
+        dogs: orderByHeight(payload, state.dogsCopy),
       };
 
     case ADD_DOG_FAVORITES: {

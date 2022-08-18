@@ -8,7 +8,7 @@ import { addDogFavorites } from "../../redux/actions/index";
 import Swal from "sweetalert2";
 
 //--HOME CARDS
-const DogCard = ({ id, name, weight_min, weight_max, image, temperaments }) => {
+const DogCard = ({ id, name, weight_min, weight_max, height_min, height_max, image, temperaments }) => {
   const dispatch = useDispatch();
   const dogsFavorites = useSelector((state) => state.dogsFavorites);
 
@@ -41,8 +41,12 @@ const DogCard = ({ id, name, weight_min, weight_max, image, temperaments }) => {
           <Link to={`/dogDetails/${id}`}>
             <img className={Style.img} src={image} alt={name} />
             <h2 className={Style.cardName}> {name.toUpperCase()} </h2>
-            <h3 className={Style.cardWeight}>Weight Min: {weight_min} Kg</h3>
-            <h3 className={Style.cardWeight}>Weight Max: {weight_max} Kg</h3>
+            <h4 className={Style.cardWeight}>Weight Min: {weight_min} Kg</h4>{" "} | 
+            {" "}
+            <h4 className={Style.cardWeight}>Weight Max: {weight_max} Kg</h4>
+            <h4 className={Style.cardWeight}>Height Min: {height_min} Kg</h4>{" "} |
+            {" "}
+            <h4 className={Style.cardWeight}>Height Max: {height_max} Kg</h4>
             <h3 className={Style.cardTemperaments}>
               {" "}
               <p className={Style.temperaments}>Temperaments: {temperaments}</p>

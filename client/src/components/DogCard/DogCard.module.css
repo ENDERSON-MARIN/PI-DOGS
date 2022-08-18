@@ -20,8 +20,7 @@
   box-shadow: 0 0 5px 5px var(--color-primary);
 }
 
-
-.cardLike{
+.cardLike {
   background-color: transparent;
   font-size: 1.6rem;
   position: absolute;
@@ -40,13 +39,13 @@
 .cardName {
   font-family: "Arial Narrow Bold", sans-serif;
   font-size: 1rem;
-  color: white;
+  color: var(--color-pagination);
   text-align: center;
 }
 .cardWeight {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: white;
-  text-align: center;
+  display: inline-flex;
 }
 .cardTemperaments {
   font-size: 1rem;
