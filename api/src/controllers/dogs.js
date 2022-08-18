@@ -1,4 +1,4 @@
-const { Dog, Temperament } = require("../db");
+const { Dog, Temperament } = require("../db_OLD");
 const { Op } = require("sequelize");
 const { getAllDogs, getDogsDb } = require("../controllers/index");
 
