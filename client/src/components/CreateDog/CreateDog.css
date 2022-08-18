@@ -1,3 +1,29 @@
+.BtnContainer {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.Btn {
+  padding: 10px;
+  background-color: var(--color-black);
+  border-radius: 10px;
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: bolder;
+  text-shadow: 0 0 0.5em rgb(29, 185, 84);
+  transition: all 0.2s;
+  margin-top: 10px;
+}
+
+.Btn:hover {
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: var(--color-black);
+}
+
 .Form_container {
   max-width: 550px;
   border-radius: 10px;
