@@ -38,7 +38,11 @@ export function getAlldogs() {
 export function createDog(body) {
   return async function (dispatch) {
     try {
-      await axios.post("/dogs", body);
+      await axios.post("/dogs", body, {
+        httpsAgent: new https.Agent({
+          rejectUnauthorized: false,
+        }),
+      });
       return dispatch({
         type: CREATE_DOG,
       });
@@ -52,7 +56,11 @@ export function createDog(body) {
 export function updateDog(id, body) {
   return async function (dispatch) {
     try {
-      await axios.put(`/dogs/${id}`, body);
+      await axios.put(`/dogs/${id}`, body, {
+        httpsAgent: new https.Agent({
+          rejectUnauthorized: false,
+        }),
+      });
       return dispatch({
         type: UPDATE_DOG,
       });
@@ -136,7 +144,7 @@ export function getDogsByTemperaments() {
 export function filterDogsByTemperaments(temperaments) {
   return {
     type: FILTER_BY_TEMPERAMENTS,
-    payload:temperaments,
+    payload: temperaments,
   };
 }
 
