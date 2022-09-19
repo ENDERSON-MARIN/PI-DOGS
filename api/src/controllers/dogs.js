@@ -1,4 +1,4 @@
-const { Dog, Temperament } = require("../db_OLD");
+const { Dog, Temperament } = require("../db.js");
 const { Op } = require("sequelize");
 const { getAllDogs, getDogsDb } = require("../controllers/index");
 
@@ -29,7 +29,7 @@ const getAllDogsNamePromise = (req, res, next) => {
     .then((allDogs) => {
       if (name) {
         const dogsFiltered = allDogs.filter((dogs) =>
-        dogs.name.toLowerCase().includes(name.toLowerCase())
+          dogs.name.toLowerCase().includes(name.toLowerCase())
         );
         dogsFiltered.length
           ? res.status(200).send(dogsFiltered)
